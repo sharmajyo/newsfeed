@@ -14,7 +14,7 @@ const ExtractTextPluginConfig = new ExtractTextPlugin({
 })
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['./src/client/index.js'],
   output: {
     path: path.resolve('dist'),
     filename: 'index_bundle.js'
