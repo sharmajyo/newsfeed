@@ -6,9 +6,7 @@ import { connect } from 'react-redux';
 export class App extends React.Component {
 
   componentWillMount() {
-    this.props.fetchFeeds().payload
-    .then(this.props.fetchFeedsSuccess)
-    .catch(this.props.fetchFeedsFailure)
+    this.props.fetchFeeds();
   }
 
   render() {
