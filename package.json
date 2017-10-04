@@ -10,6 +10,7 @@
     "server": "webpack && babel-node server.js"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
     "extract-text-webpack-plugin": "^3.0.0",

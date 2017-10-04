@@ -2,7 +2,7 @@ import { get, add, update, remove } from '../models/pgClient';
 
 export default (app, db) => {
 
-  app.get('/feeds', (req, res, next) => {
+  app.get('/api/feeds', (req, res, next) => {
 
     get('feeds', (err, data) => {
 
@@ -14,7 +14,7 @@ export default (app, db) => {
     })
   });
 
-  app.post('/feed', (req, res, next) => {
+  app.post('/api/feed', (req, res, next) => {
     const data = [req.body.name, req.body.url ];
 
     add('feeds', ['name', 'url'], data, (err, data) => {
@@ -27,7 +27,7 @@ export default (app, db) => {
     })
   });
 
-  app.put('/feed/:feed_id', (req, res, next) => {
+  app.put('/api/feed/:feed_id', (req, res, next) => {
     const id = req.params.feed_id;
     const data = [req.body.name, req.body.url ];
 
@@ -41,7 +41,7 @@ export default (app, db) => {
     })
   });
 
-  app.delete('/feed/:feed_id', (req, res, next) => {
+  app.delete('/api/feed/:feed_id', (req, res, next) => {
     const id = req.params.feed_id;
 
     remove('feeds', id, (err, data) => {

@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import trunk from 'redux-thunk';
+import feedsReducer from '../reducers';
 
 let store;
 export default {
   configure: (initialState) => {
     const reducers = combineReducers({
-      // add here
+      feedsReducer,
     });
 
     if (initialState) {
