@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
       newState.feeds = action.data;
       return newState;
     case FETCH_FEEDS_FAILURE:
-      console.log('here fail');
+      newState.feeds = {};
       return newState;
     default:
       return newState;
