@@ -8,6 +8,7 @@
   ],
   "rules": {
     "import/no-unresolved": "off",
+    "arrow-body-style": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }
