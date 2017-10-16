@@ -5,7 +5,7 @@ export default (app, db) => {
   app.get('/api/feeds', (req, res, next) => {
 
     get('feeds', (err, data) => {
-
+      console.log("--- here");
       if( err) {
         return res.status(500).json({success: false, data: err});
       }
