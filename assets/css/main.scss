@@ -1,11 +1,15 @@
-
+/* css preset */
 html {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-body {
+body, #root {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   border: 0;
@@ -26,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p, th, td, li, dd, dt, ul, ol, blockquote, q, acronym, abbr, a, input, select, textarea {
   margin: 0;
-  padding: 0;
+  padding: 8px;
   font: normal normal normal 1em/1.25 Arial, Helvetica, sans-serif;
 }
 
@@ -147,4 +151,108 @@ label {
 .nobullet {
   list-style: none;
   list-style-image: none;
+}
+
+/* app css */
+.parent-container {
+
+  width: 100%;
+  height: 100%;
+  background-color:#a8e9ff;
+  filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=#a8e9ff, endColorstr=#3fb5cc);
+  background-image:-moz-linear-gradient(right bottom, #a8e9ff 100%, #3fb5cc 15%,#fff 97%);
+  background-image:linear-gradient(right bottom, #a8e9ff 100%, #3fb5cc 15%,#fff 97%);
+  background-image:-webkit-linear-gradient(right bottom, #a8e9ff 100%, #3fb5cc 15%,#fff 97%);
+  background-image:-o-linear-gradient(right bottom, #a8e9ff 100%, #3fb5cc 15%,#fff 97%);
+  background-image:-ms-linear-gradient(right bottom, #a8e9ff 100%, #3fb5cc 15%,#fff 97%);
+  background-image:-webkit-gradient(linear, right bottom, left top, color-stop(100%,#a8e9ff), color-stop(15%,#3fb5cc),color-stop(97%,#fff));
+}
+
+.app-header {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  border-bottom: 1px solid #e3dcdc;
+  background-color: #f0f0f0;
+  padding: 15px;
+}
+
+.main-container {
+  width: 100%;
+  height: calc(100% - 61px);
+  display: inline-flex;
+}
+
+.navigation-container {
+  width: 20%;
+  border-right: 2px solid #e3dcdc;
+}
+
+.feeds-list-container {
+  height: 100%;
+}
+
+.feeds-list {
+  color: red;
+}
+
+.empty-feeds {
+  padding: 30px;
+  font-size: 12px;
+  color: red;
+  font-style: italic;
+}
+
+.display-container {
+  width: 80%;
+  padding: 30px;
+  color: #352e2e;
+  font-size: 15px;
+}
+
+.add-new-feed {
+  padding: 20px;
+  border-bottom: 1px solid #e3dcdc;
+  text-align: center;
+  display: block;
+}
+
+.feed-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-feed-btn {
+  margin-top: 10px;
+  padding: 8px;
+}
+
+.feed-info {
+  cursor: pointer;
+  list-style: none;
+  padding: 20px;
+  border-bottom: 1px solid #e3dcdc;
+}
+
+.feed-name {
+  font-weight: bold;
+  color: #504c4c;
+}
+
+.feed-url {
+  font-size: 12px;
+  color: #a6a0a0;
+}
+
+.item-details {
+  list-style: none;
+}
+
+.item-title {
+  color: #d0330d;
+}
+
+.item-content {
+  color: #352e2e;
+  font-size: 15px;
 }
