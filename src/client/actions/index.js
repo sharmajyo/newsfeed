@@ -4,6 +4,8 @@ import Promise from 'bluebird';
 import {
   FETCH_FEEDS_SUCCESS,
   FETCH_FEEDS_FAILURE,
+  FETCH_FEED_SUCCESS,
+  FETCH_FEED_FAILURE,
 } from '../constants';
 
 
@@ -39,16 +41,19 @@ const mapDispatchToProps = (dispatch) => {
         dispatch({ type: FETCH_FEEDS_FAILURE, error });
       });
     },
-    getFeed: (params = 'http://www.abc.net.au/news/feed/45910/rss.xml') => {
+    getFeed: (params) => {
       const baseEndPoint = 'https://api.rss2json.com/v1/api.json';
 
       getPromise(baseEndPoint, { rss_url: params })
-      .then(() => {
-
+      .then((data) => {
+        dispatch({ type: FETCH_FEED_SUCCESS, data });
       })
-      .catch(() => {
-
+      .catch((error) => {
+        dispatch({ type: FETCH_FEED_FAILURE, error });
       });
+    },
+    addFeed: () => {
+
     },
   };
 };
