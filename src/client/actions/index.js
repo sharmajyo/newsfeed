@@ -52,8 +52,16 @@ const mapDispatchToProps = (dispatch) => {
         dispatch({ type: FETCH_FEED_FAILURE, error });
       });
     },
-    addFeed: () => {
+    addFeed: ({ name, url }) => {
+      if (!name || !url) {
+        throw new Error('missing required fields');
+      }
 
+      return axios({
+        method: 'post',
+        url: `${ROOT_URL}/feed`,
+        data: { name, url },
+      });
     },
   };
 };
