@@ -237,11 +237,13 @@ label {
 .feed-name {
   font-weight: bold;
   color: #504c4c;
+  word-wrap: break-word;
 }
 
 .feed-url {
   font-size: 12px;
   color: #a6a0a0;
+  word-wrap: break-word;
 }
 
 .item-details {

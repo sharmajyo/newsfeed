@@ -6,7 +6,12 @@ import { connect } from 'react-redux';
 class RenderFeed extends React.Component {
 
   render() {
-    const { selectedFeed } = this.props;
+    const { selectedFeed, errorInfo } = this.props;
+
+    if (errorInfo) {
+      alert(errorInfo);
+    }
+
     return (
       <div> { _.isEmpty(selectedFeed)
         ? ''
@@ -17,14 +22,13 @@ class RenderFeed extends React.Component {
               <ul className="feeds-sub-items">
               {
                 _.map(selectedFeed.items, (item, i) => {
-                  const a = <li className="item-details" key={i} >
+                  const list = <li className="item-details" key={i} >
                     <h3 className="item-title">{item.title}</h3>
                     <div className="item-content">{item.content}</div>
                     <a href={item.link}>read more</a>
                   </li>
 
-                  console.log("a",a);
-                  return a;
+                  return list;
                 })
               }
               </ul>
@@ -39,6 +43,7 @@ class RenderFeed extends React.Component {
 const stateToProps = ({ feedsReducer }) => {
   return {
     selectedFeed: feedsReducer.selectedFeed,
+    errorInfo: feedsReducer.errorInfo,
   }
 }
 
