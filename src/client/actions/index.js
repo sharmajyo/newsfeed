@@ -2,6 +2,8 @@ import axios from 'axios';
 import superAgent from 'superagent';
 import Promise from 'bluebird';
 import {
+  API_FAILURE,
+  RESET_API_ERROR,
   FETCH_FEEDS_SUCCESS,
   FETCH_FEEDS_FAILURE,
   FETCH_FEED_SUCCESS,
@@ -27,19 +29,23 @@ const mapDispatchToProps = (dispatch) => {
     });
   };
 
+  const getFeeds = () => {
+    return axios({
+      method: 'get',
+      url: `${ROOT_URL}/feeds`,
+      headers: [],
+    })
+    .then(({ data }) => {
+      dispatch({ type: FETCH_FEEDS_SUCCESS, data });
+    })
+    .catch((error) => {
+      dispatch({ type: FETCH_FEEDS_FAILURE, error });
+    });
+  };
+
   return {
     fetchFeeds: () => {
-      return axios({
-        method: 'get',
-        url: `${ROOT_URL}/feeds`,
-        headers: [],
-      })
-      .then(({ data }) => {
-        dispatch({ type: FETCH_FEEDS_SUCCESS, data });
-      })
-      .catch((error) => {
-        dispatch({ type: FETCH_FEEDS_FAILURE, error });
-      });
+      getFeeds();
     },
     getFeed: (params) => {
       const baseEndPoint = 'https://api.rss2json.com/v1/api.json';
@@ -61,7 +67,16 @@ const mapDispatchToProps = (dispatch) => {
         method: 'post',
         url: `${ROOT_URL}/feed`,
         data: { name, url },
+      })
+      .then(() => {
+        getFeeds();
+      })
+      .catch((error) => {
+        dispatch({ type: API_FAILURE, error });
       });
+    },
+    resetError: () => {
+      dispatch({ type: RESET_API_ERROR });
     },
   };
 };

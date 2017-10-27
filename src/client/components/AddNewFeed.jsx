@@ -10,7 +10,7 @@ export class AddFeed extends React.Component {
   }
 
   render() {
-    const { addFeed } = this.props;
+    const { addFeed, resetError } = this.props;
     const { feed } = this.state;
 
     const onChange = (attribute) => ({ target: { value } }) => {
@@ -20,8 +20,11 @@ export class AddFeed extends React.Component {
 
     const addNewFeed = (e) => {
       e.preventDefault();
-      addFeed(feed);
-      this.setState({ feed: {} });
+      addFeed(feed)
+      .then((data) => {
+        data ? this.setState({ feed: {} }) : resetError();
+      });
+
     }
 
     return (
@@ -30,6 +33,7 @@ export class AddFeed extends React.Component {
           className="feed-input"
           type="text"
           placeholder="name"
+          required='true'
           onChange={onChange('name')}
         />
         <input
@@ -37,6 +41,7 @@ export class AddFeed extends React.Component {
           type="url"
           placeholder="paste feed url"
           placeholder="name"
+          required='true'
           onChange={onChange('url')}
         />
         <button
