@@ -6,7 +6,7 @@ export class AddFeed extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { feed: {} };
+    this.state = { feed: { name: '', url: '' } };
   }
 
   render() {
@@ -22,7 +22,7 @@ export class AddFeed extends React.Component {
       e.preventDefault();
       addFeed(feed)
       .then((data) => {
-        data ? this.setState({ feed: {} }) : resetError();
+        this.props.error ? resetError() : this.setState({ feed: { name: '', url: '' } });
       });
 
     }
@@ -34,6 +34,7 @@ export class AddFeed extends React.Component {
           type="text"
           placeholder="name"
           required='true'
+          value={feed.name}
           onChange={onChange('name')}
         />
         <input
@@ -42,12 +43,13 @@ export class AddFeed extends React.Component {
           placeholder="paste feed url"
           placeholder="name"
           required='true'
+          value={feed.url}
           onChange={onChange('url')}
         />
         <button
           className="feed-input add-feed-btn"
           onClick={addNewFeed}
-          disabled={feed.name == null || feed.url == null}
+          disabled={feed.name == '' || feed.url == ''}
         >
           Add my feed
         </button>
@@ -57,4 +59,10 @@ export class AddFeed extends React.Component {
 
 }
 
-export default connect(null, mapDispatchToProps)(AddFeed);
+const stateToProps = ({ feedsReducer }) => {
+  return {
+    error: feedsReducer.errorInfo,
+  }
+};
+
+export default connect(stateToProps, mapDispatchToProps)(AddFeed);
